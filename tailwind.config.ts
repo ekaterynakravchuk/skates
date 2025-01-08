@@ -1,18 +1,34 @@
 import type { Config } from "tailwindcss";
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
 
 export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: {
+    files: [
+      "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/slices/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    extract,
+  },
   theme: {
+    screens,
+    fontSize,
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "brand-blue": "#4876ff",
+        "brand-lime": "#d9f154",
+        "brand-navy": "#2e3192",
+        "brand-orange": "#ff7347",
+        "brand-pink": "#f7d0e9",
+        "brand-purple": "#692e54",
+        "brand-gray": "#fffdf9",
+      },
+      fontFamily: {
+        sans: ["var(--font-bowlby)"],
+        mono: ["var(--font-dm-mono)"],
       },
     },
   },
-  plugins: [],
+  plugins: [fluid],
 } satisfies Config;
