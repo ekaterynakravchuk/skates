@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import fluid, { extract, screens, fontSize } from "fluid-tailwind";
+import fluid, { extract, screens, fontSize, FluidThemeConfig } from "fluid-tailwind";
 
 export default {
   content: {
@@ -12,6 +12,9 @@ export default {
     extract,
   },
   theme: {
+    fluid: (({ theme }) => ({
+      defaultScreens: ["20rem", theme("screens.lg")],
+    })) satisfies FluidThemeConfig,
     screens,
     fontSize,
     extend: {
@@ -27,6 +30,18 @@ export default {
       fontFamily: {
         sans: ["var(--font-bowlby)"],
         mono: ["var(--font-dm-mono)"],
+      },
+      keyframes: {
+        squiggle: {
+          "0%": { filter: 'url("#squiggle-0")' },
+          "25%": { filter: 'url("#squiggle-1")' },
+          "50%": { filter: 'url("#squiggle-2")' },
+          "75%": { filter: 'url("#squiggle-3")' },
+          "100%": { filter: 'url("#squiggle-4")' },
+        },
+      },
+      animation: {
+        squiggle: "squiggle .5s infinite",
       },
     },
   },
